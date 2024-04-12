@@ -1,7 +1,13 @@
 class OrdersController < ApplicationController
 
   def show
-    @order = Order.find(params[:id])
+    #find the customer order by id
+    @order = Order.find(params[:id]) 
+    #get all line items from the order
+    @line_items = LineItem.where(order_id: params[:id])
+    #fetch selected product from @line_items
+    product_ids = @line_items.pluck(:product_id)
+    @products = Product.where(id: product_ids)
   end
 
   def create
