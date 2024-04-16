@@ -1,14 +1,32 @@
+# <section class="categories-show">
+
+#   <header class="page-header">
+#     <h1>
+#       <%= @category.name %>
+#       <small>(<%= pluralize @products.size, 'product' %>)</small>
+#     </h1>
+#   </header>
+
+#   <div class="products">
+#     <%= render @products %>
+#   </div>
+
+# </section>
+
 <section class="categories-show">
+  <% if @category %>
+    <header class="page-header">
+      <h1>
+        <%= @category.name %>
+        <small>(<%= pluralize @products.size, 'product' %>)</small>
+      </h1>
+    </header>
 
-  <header class="page-header">
-    <h1>
-      <%= @category.name %>
-      <small>(<%= pluralize @products.size, 'product' %>)</small>
-    </h1>
-  </header>
 
-  <div class="products">
+    <div class="products">
     <%= render @products %>
   </div>
-
+<% else %>
+  <p>Category not found.</p>
+<% end %>
 </section>
